@@ -20,6 +20,7 @@ import edu.eci.arsw.ecibastas.services.exceptions.UserServiceException;
 @CrossOrigin(origins = "*")
 @Controller("/user")
 public class UserAPIController {
+
     @Autowired
     UserService userService;
 
@@ -27,7 +28,6 @@ public class UserAPIController {
     public ResponseEntity<?> createNewUser(@RequestBody User user) {
         try {
             userService.createNewUser(user);
-
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (UserServiceException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
