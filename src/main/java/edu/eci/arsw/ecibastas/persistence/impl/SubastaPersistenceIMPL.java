@@ -1,10 +1,8 @@
 package edu.eci.arsw.ecibastas.persistence.impl;
 
 import edu.eci.arsw.ecibastas.model.Subasta;
-import edu.eci.arsw.ecibastas.model.User;
 import edu.eci.arsw.ecibastas.persistence.SubastaPersistence;
 import edu.eci.arsw.ecibastas.persistence.exceptions.SubastaPersistenceException;
-import edu.eci.arsw.ecibastas.persistence.exceptions.UserPersistenceException;
 import edu.eci.arsw.ecibastas.repository.SubastaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,7 +36,7 @@ public class SubastaPersistenceIMPL implements SubastaPersistence {
     @Override
     public List<Subasta> getAllSubasta() throws SubastaPersistenceException {
         try {
-            Query query = entityManager.createQuery("select * from subasta", Subasta.class);
+            Query query = entityManager.createNativeQuery("select * from subasta", Subasta.class);
             List<Subasta> resultado = query.getResultList();
             return resultado;
         } catch (Exception e) {

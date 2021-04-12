@@ -23,11 +23,11 @@ public class Subasta implements Serializable {
 
     @Column(name = "creator")
     private String creator;
-
-    //pendiente
+/*
+    pendiente
     @Column(name = "image")
     private String image;
-
+*/
     public Subasta() {
 
     }
@@ -35,7 +35,7 @@ public class Subasta implements Serializable {
     public Subasta(String name, String creator, String image) {
         this.name = name;
         this.creator = creator;
-        this.image = image;
+        //this.image = image;
     }
 
 
@@ -62,12 +62,13 @@ public class Subasta implements Serializable {
     public void setCreator(String creator) {
         this.creator = creator;
     }
-
-    public String getImage() {
-        return image;
+/*
+    public String getImage() { return image;
     }
 
     public void setImage(String image) {
         this.image = image;
     }
+
+ */
 }

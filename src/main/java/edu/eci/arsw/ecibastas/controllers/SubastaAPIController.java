@@ -18,13 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "*")
-@Controller("/subasta")
 public class SubastaAPIController {
 
     @Autowired
     SubastaService subastaService;
 
-    @RequestMapping(value = "/createNewSubasta", method = RequestMethod.POST)
+    @RequestMapping(value = "/subasta/createNewSubasta", method = RequestMethod.POST)
     public ResponseEntity<?> createNewSubasta(@RequestBody Subasta subasta) {
         try {
             subastaService.createNewSubasta(subasta);
@@ -34,7 +33,7 @@ public class SubastaAPIController {
         }
     }
 
-    @RequestMapping(value = "/subastaName", method = RequestMethod.GET)
+    @RequestMapping(value = "/subasta/subastaName", method = RequestMethod.GET)
     public ResponseEntity<?> getSubastaByName(@RequestParam(name = "value") String name) {
         try {
             return new ResponseEntity<>(subastaService.getSubastaByName(name), HttpStatus.FOUND);
@@ -43,7 +42,7 @@ public class SubastaAPIController {
         }
     }
 
-    @RequestMapping(value = "/subastas", method = RequestMethod.GET)
+    @RequestMapping(value = "/subasta/subastas", method = RequestMethod.GET)
     public ResponseEntity<?> getSubastas() {
         try {
             return new ResponseEntity<>(subastaService.getAllSubasta(), HttpStatus.FOUND);
