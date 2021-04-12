@@ -29,7 +29,7 @@ public class UserPersistenceIMPL implements UserPersistence {
         try {
             userRepository.save(user);
         } catch (Exception e) {
-            throw new UserPersistenceException(UserPersistenceException.ERROR_CREATING_NEW_USER);
+            throw new UserPersistenceException(e.getMessage().toString());
         }
     }
 
