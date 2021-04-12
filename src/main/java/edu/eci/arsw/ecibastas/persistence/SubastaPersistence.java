@@ -1,0 +1,12 @@
+package edu.eci.arsw.ecibastas.persistence;
+
+import edu.eci.arsw.ecibastas.model.Subasta;
+import edu.eci.arsw.ecibastas.persistence.exceptions.SubastaPersistenceException;
+
+import java.util.List;
+
+public interface SubastaPersistence {
+    void createNewSubasta(Subasta subasta) throws SubastaPersistenceException;
+    List<Subasta> getAllSubasta() throws SubastaPersistenceException;
+    Subasta getSubastaByName(String name) throws SubastaPersistenceException;
+}
