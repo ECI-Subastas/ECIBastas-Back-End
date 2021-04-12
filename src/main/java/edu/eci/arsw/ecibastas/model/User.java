@@ -16,7 +16,7 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int user_id;
     
     @Column(name = "nickname")
     private String nickname;
@@ -37,8 +37,7 @@ public class User implements Serializable {
 
     }
 
-    public User(int id, String nickname, String fullName, String email, String phone, String role) {
-        this.id = id;
+    public User(String nickname, String fullName, String email, String phone, String role) {
         this.nickname = nickname;
         this.fullName = fullName;
         this.email = email;
@@ -46,12 +45,12 @@ public class User implements Serializable {
         this.role = role;
     }
 
-    public int getId() {
-        return this.id;
+    public int getUser_id() {
+        return this.user_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public String getNickname() {

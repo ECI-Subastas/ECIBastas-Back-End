@@ -1,10 +1,10 @@
 create table users(
-    id int primary key,
+    user_id int primary key,
     nickname varchar(100) not null,
     full_name varchar(100) not null,
     email varchar(100) not null,
     phone char(10) not null,
-    user_role varchar(13)
+    user_role varchar(13) not null
 );
 
 create table sale(
