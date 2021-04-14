@@ -16,7 +16,7 @@ import java.util.List;
 public class SubastaPersistenceIMPL implements SubastaPersistence {
 
     @Autowired
-    SubastaRepository subastaRepository;
+    SubastaRepository subastaRepository; 
 
     @PersistenceContext
     EntityManager entityManager;

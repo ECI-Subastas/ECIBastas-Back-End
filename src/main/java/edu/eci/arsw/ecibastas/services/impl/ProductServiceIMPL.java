@@ -7,6 +7,9 @@ import edu.eci.arsw.ecibastas.persistence.exceptions.UserPersistenceException;
 import edu.eci.arsw.ecibastas.services.ProductService;
 import edu.eci.arsw.ecibastas.services.exceptions.ProductServiceExceptions;
 import edu.eci.arsw.ecibastas.services.exceptions.UserServiceException;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,4 +48,14 @@ public class ProductServiceIMPL implements ProductService {
             throw new ProductServiceExceptions(e.getMessage());
         }
     }
+
+    @Override
+    public List<Product> getProductsBySubasta(int subastaid) throws ProductServiceExceptions {
+        try {
+            return productPersistence.getProductsBySubasta(subastaid);
+        } catch (ProductPersistenceException e) {
+            throw new ProductServiceExceptions(e.getMessage());
+        }
+    }
+
 }

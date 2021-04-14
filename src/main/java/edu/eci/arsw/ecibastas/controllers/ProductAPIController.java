@@ -1,7 +1,6 @@
 package edu.eci.arsw.ecibastas.controllers;
 
 import edu.eci.arsw.ecibastas.model.Product;
-import edu.eci.arsw.ecibastas.model.User;
 import edu.eci.arsw.ecibastas.persistence.exceptions.ProductPersistenceException;
 import edu.eci.arsw.ecibastas.services.ProductService;
 import edu.eci.arsw.ecibastas.services.exceptions.ProductServiceExceptions;
@@ -17,6 +16,15 @@ public class ProductAPIController {
 
     @Autowired
     ProductService productService;
+
+    @RequestMapping(value = "/product/ProductsBySubasta", method = RequestMethod.GET)
+    public ResponseEntity<?> productsBySubasta(@RequestParam(name = "subastaid") Integer subastaid) {
+        try {
+            return new ResponseEntity<>(productService.getProductsBySubasta(subastaid), HttpStatus.ACCEPTED);
+        } catch (ProductServiceExceptions e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
 
     @RequestMapping(value = "/product/createNewProduct", method = RequestMethod.POST)
     public ResponseEntity<?> createNewProduct(@RequestBody Product product) {

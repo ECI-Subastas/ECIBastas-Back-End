@@ -8,4 +8,5 @@ public interface UserService {
     void changeUserRole(String nickname, String email, String role) throws UserServiceException;
     User getUserByNickname(String nickname) throws UserServiceException;
     User getUserByEmail(String email) throws UserServiceException;
+    
 }
