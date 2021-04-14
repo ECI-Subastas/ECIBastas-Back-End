@@ -58,7 +58,7 @@ public class ProductPersistenceIMPL implements ProductPersistence {
     @Override
     public void changePriceInitial(String product, int price) throws ProductPersistenceException {
         try {
-            Query query = entityManager.createNativeQuery("update product set initialprice=? where product=? ", Product.class);
+            Query query = entityManager.createNativeQuery("update product set actualprice=? where product=? ", Product.class);
 
             query.setParameter(1, price);
             query.setParameter(2, product);

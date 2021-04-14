@@ -37,7 +37,7 @@ public class ProductAPIController {
     }
 
     @RequestMapping(value = "/product/changePriceInitial", method = RequestMethod.POST)
-    public ResponseEntity<?> changeUserRole(@PathVariable(name = "product") String product,  @PathVariable(name = "price") int price) {
+    public ResponseEntity<?> changePriceInitial(@RequestParam(name = "product") String product,  @RequestParam(name = "price") int price) {
         try {
             productService.changePriceInitial(product,price);
 
