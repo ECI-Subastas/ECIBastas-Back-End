@@ -55,7 +55,7 @@ public class UserAPIController {
     @RequestMapping(value = "/user/email", method = RequestMethod.GET)
     public ResponseEntity<?> getUserByEmail(@RequestParam(name = "value") String email) {
         try {
-            return new ResponseEntity<>(userService.getUserByEmail(email), HttpStatus.FOUND);
+            return new ResponseEntity<>(userService.getUserByEmail(email), HttpStatus.ACCEPTED);
         } catch (UserServiceException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
