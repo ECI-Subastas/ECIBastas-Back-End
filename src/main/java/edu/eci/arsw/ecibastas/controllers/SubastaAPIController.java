@@ -45,7 +45,7 @@ public class SubastaAPIController {
     @RequestMapping(value = "/subasta/subastas", method = RequestMethod.GET)
     public ResponseEntity<?> getSubastas() {
         try {
-            return new ResponseEntity<>(subastaService.getAllSubasta(), HttpStatus.FOUND);
+            return new ResponseEntity<>(subastaService.getAllSubasta(), HttpStatus.ACCEPTED);
         } catch (SubastaServiceExceptions e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
