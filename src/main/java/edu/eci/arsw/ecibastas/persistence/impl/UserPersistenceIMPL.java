@@ -68,7 +68,7 @@ public class UserPersistenceIMPL implements UserPersistence {
     @Override
     public User getUserByEmail(String email) throws UserPersistenceException {
         try {
-            Query query = entityManager.createNativeQuery("select * from users where nickname=?", User.class);
+            Query query = entityManager.createNativeQuery("select * from users where email=?", User.class);
 
             query.setParameter(1, email);
 
