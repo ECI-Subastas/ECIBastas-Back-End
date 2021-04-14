@@ -22,7 +22,7 @@ public class Subasta implements Serializable {
     private String name;
 
     @Column(name = "creator")
-    private String creator;
+    private int creator;
 /*
     pendiente
     @Column(name = "image")
@@ -32,7 +32,7 @@ public class Subasta implements Serializable {
 
     }
 
-    public Subasta(String name, String creator, String image) {
+    public Subasta(String name, int creator, String image) {
         this.name = name;
         this.creator = creator;
         //this.image = image;
@@ -55,11 +55,11 @@ public class Subasta implements Serializable {
         this.name = name;
     }
 
-    public String getCreator() {
+    public int getCreator() {
         return creator;
     }
 
-    public void setCreator(String creator) {
+    public void setCreator(int creator) {
         this.creator = creator;
     }
 /*
