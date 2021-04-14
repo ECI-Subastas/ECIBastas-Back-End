@@ -2,6 +2,7 @@ package edu.eci.arsw.ecibastas.controllers;
 
 import edu.eci.arsw.ecibastas.model.Product;
 import edu.eci.arsw.ecibastas.model.User;
+import edu.eci.arsw.ecibastas.persistence.exceptions.ProductPersistenceException;
 import edu.eci.arsw.ecibastas.services.ProductService;
 import edu.eci.arsw.ecibastas.services.exceptions.ProductServiceExceptions;
 import edu.eci.arsw.ecibastas.services.exceptions.UserServiceException;
@@ -24,6 +25,26 @@ public class ProductAPIController {
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (ProductServiceExceptions e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value = "/product/changePriceInitial", method = RequestMethod.POST)
+    public ResponseEntity<?> changeUserRole(@PathVariable(name = "product") String product,  @PathVariable(name = "price") int price) {
+        try {
+            productService.changePriceInitial(product,price);
+
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        } catch (ProductServiceExceptions | UserServiceException | ProductPersistenceException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_MODIFIED);
+        }
+    }
+
+    @RequestMapping(value = "/product/subasta", method = RequestMethod.GET)
+    public ResponseEntity<?> getSubastaByProduct(@RequestParam(name = "value") String nickname) {
+        try {
+            return new ResponseEntity<>(productService.getSubastaByProduct(nickname), HttpStatus.FOUND);
+        } catch (ProductServiceExceptions e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 }
