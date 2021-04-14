@@ -13,4 +13,5 @@ public interface ProductService {
      void changePriceInitial(String product, int price) throws UserServiceException, ProductPersistenceException, ProductServiceExceptions;
      Product getSubastaByProduct(String product) throws ProductServiceExceptions;
      List<Product> getProductsBySubasta(int subastaid) throws ProductServiceExceptions;
+     void pujarDefault(int productid) throws ProductServiceExceptions;
 }

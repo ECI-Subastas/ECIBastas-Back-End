@@ -40,8 +40,8 @@ public class ProductAPIController {
     public ResponseEntity<?> changePriceInitial(@RequestParam(name = "product") String product,  @RequestParam(name = "price") int price) {
         try {
             productService.changePriceInitial(product,price);
-
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
+
         } catch (ProductServiceExceptions | UserServiceException | ProductPersistenceException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_MODIFIED);
         }
@@ -53,6 +53,17 @@ public class ProductAPIController {
             return new ResponseEntity<>(productService.getSubastaByProduct(nickname), HttpStatus.FOUND);
         } catch (ProductServiceExceptions e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/product/pujarDefault", method = RequestMethod.PUT)
+    public ResponseEntity<?> pujarDefault(@RequestParam(name = "productid") int productid) {
+        try {
+            productService.pujarDefault(productid);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+
+        } catch (ProductServiceExceptions e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_MODIFIED);
         }
     }
 }

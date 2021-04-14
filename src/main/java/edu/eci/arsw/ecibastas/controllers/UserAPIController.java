@@ -33,7 +33,7 @@ public class UserAPIController {
     }
 
     @RequestMapping(value = "/user/changeRole", method = RequestMethod.POST)
-    public ResponseEntity<?> changeUserRole(@PathVariable(name = "nickname") String nickname, @PathVariable(name = "email") String email, @PathVariable(name = "role") String role) {
+    public ResponseEntity<?> changeUserRole(@RequestParam(name = "nickname") String nickname, @RequestParam(name = "email") String email, @RequestParam(name = "role") String role) {
         try {
             userService.changeUserRole(nickname, email, role);
 

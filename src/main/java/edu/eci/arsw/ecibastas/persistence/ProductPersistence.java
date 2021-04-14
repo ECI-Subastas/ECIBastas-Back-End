@@ -13,4 +13,6 @@ public interface ProductPersistence {
     void changePriceInitial(String product, int price) throws ProductPersistenceException;
 
     List<Product> getProductsBySubasta(int subastaid) throws ProductPersistenceException;
+
+    void pujarDefault(int idproduct) throws ProductPersistenceException;
 }

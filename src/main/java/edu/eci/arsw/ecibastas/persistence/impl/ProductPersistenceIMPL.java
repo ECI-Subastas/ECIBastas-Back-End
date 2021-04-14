@@ -14,6 +14,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 @Service
 public class ProductPersistenceIMPL implements ProductPersistence {
@@ -58,7 +59,7 @@ public class ProductPersistenceIMPL implements ProductPersistence {
     @Override
     public void changePriceInitial(String product, int price) throws ProductPersistenceException {
         try {
-            Query query = entityManager.createNativeQuery("update product set actualprice=? where product=? ", Product.class);
+            Query query = entityManager.createNativeQuery("update product set initialprice=? where product=? ", Product.class);
 
             query.setParameter(1, price);
             query.setParameter(2, product);
@@ -81,6 +82,20 @@ public class ProductPersistenceIMPL implements ProductPersistence {
             return resultado;
         } catch (Exception e) {
             throw new ProductPersistenceException(ProductPersistenceException.ERROR_CHANGING_USER_ROLE);
+        }
+    }
+
+    @Override
+    @Transactional
+    public void pujarDefault(int idproduct) throws ProductPersistenceException {
+        try {
+            Query query = entityManager.createNativeQuery("update product set actualprice=actualprice + 5 where product_id=?", Product.class);
+
+            query.setParameter(1, idproduct);
+
+            query.executeUpdate();
+        } catch (Exception e) {
+            throw new ProductPersistenceException(ProductPersistenceException.ERROR_USER_NOT_FOUND);
         }
     }
 }

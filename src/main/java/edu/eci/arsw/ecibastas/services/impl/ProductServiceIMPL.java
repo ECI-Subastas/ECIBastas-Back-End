@@ -58,4 +58,13 @@ public class ProductServiceIMPL implements ProductService {
         }
     }
 
+    @Override
+    public void pujarDefault(int productid) throws ProductServiceExceptions {
+        try {
+            productPersistence.pujarDefault(productid);
+        } catch (ProductPersistenceException e) {
+            throw new ProductServiceExceptions(e.getMessage());
+        }
+    }
+
 }
