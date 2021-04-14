@@ -27,4 +27,22 @@ public class ProductServiceIMPL implements ProductService {
             throw new ProductServiceExceptions(e.getMessage());
         }
     }
+
+    @Override
+    public void changePriceInitial(String product, int price) throws ProductPersistenceException {
+        try {
+            productPersistence.changePriceInitial(product, price);
+        } catch (ProductPersistenceException e) {
+            throw new ProductPersistenceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public Product getSubastaByProduct(String product) throws ProductServiceExceptions {
+        try {
+            return productPersistence.getSubastaByProduct(product);
+        } catch (ProductPersistenceException e) {
+            throw new ProductServiceExceptions(e.getMessage());
+        }
+    }
 }
