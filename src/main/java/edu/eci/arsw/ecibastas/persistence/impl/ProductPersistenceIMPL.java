@@ -4,7 +4,6 @@ import edu.eci.arsw.ecibastas.model.Product;
 import edu.eci.arsw.ecibastas.model.User;
 import edu.eci.arsw.ecibastas.persistence.ProductPersistence;
 import edu.eci.arsw.ecibastas.persistence.exceptions.ProductPersistenceException;
-import edu.eci.arsw.ecibastas.persistence.exceptions.UserPersistenceException;
 import edu.eci.arsw.ecibastas.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +28,6 @@ public class ProductPersistenceIMPL implements ProductPersistence {
 
     }
 
-
     @Override
     public void createNewProduct(Product product) throws ProductPersistenceException {
         try {
@@ -40,13 +38,13 @@ public class ProductPersistenceIMPL implements ProductPersistence {
     }
 
     @Override
-    public Product getSubastaByProduct(String name) throws  ProductPersistenceException{
+    public Product getSubastaByProduct(String name) throws ProductPersistenceException {
         try {
             Query query = entityManager.createNativeQuery("select * from product where name=?", User.class);
 
             query.setParameter(1, name);
 
-            if (query.getResultList().size()==0) {
+            if (query.getResultList().size() == 0) {
                 throw new ProductPersistenceException(ProductPersistenceException.ERROR_USER_NOT_FOUND);
             }
 
@@ -59,18 +57,18 @@ public class ProductPersistenceIMPL implements ProductPersistence {
     @Override
     public void changePriceInitial(String product, int price) throws ProductPersistenceException {
         try {
-            Query query = entityManager.createNativeQuery("update product set initialprice=? where product=? ", Product.class);
+            Query query = entityManager.createNativeQuery("update product set initialprice=? where product=? ",
+                    Product.class);
 
             query.setParameter(1, price);
             query.setParameter(2, product);
-
 
             query.executeUpdate();
         } catch (Exception e) {
             throw new ProductPersistenceException(ProductPersistenceException.ERROR_CHANGING_USER_ROLE);
         }
     }
-    
+
     @Override
     public List<Product> getProductsBySubasta(int subastaid) throws ProductPersistenceException {
         try {
@@ -89,7 +87,8 @@ public class ProductPersistenceIMPL implements ProductPersistence {
     @Transactional
     public void pujarDefault(int idproduct) throws ProductPersistenceException {
         try {
-            Query query = entityManager.createNativeQuery("update product set actualprice=actualprice + 5 where product_id=?", Product.class);
+            Query query = entityManager.createNativeQuery(
+                    "update product set actualprice=actualprice + 5 where product_id=?", Product.class);
 
             query.setParameter(1, idproduct);
 

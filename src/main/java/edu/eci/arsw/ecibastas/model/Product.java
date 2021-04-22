@@ -5,13 +5,12 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "product")
-public class Product  implements Serializable {
+public class Product implements Serializable {
     private static final long serialVersionUID = 6153949052673072585L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int product_id;
-
 
     @Column(name = "name")
     private String name;
@@ -32,15 +31,13 @@ public class Product  implements Serializable {
 
     }
 
-    public Product( String name, int subasta, String description, int initialprice,int actualprice) {
+    public Product(String name, int subasta, String description, int initialprice, int actualprice) {
         this.name = name;
         this.subasta = subasta;
         this.description = description;
         this.initialprice = initialprice;
         this.actualprice = actualprice;
     }
-
-
 
     public int getProduct_id() {
         return product_id;

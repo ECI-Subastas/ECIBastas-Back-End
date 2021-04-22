@@ -53,5 +53,4 @@ public class UserServiceIMPL implements UserService {
             throw new UserServiceException(e.getMessage());
         }
     }
-    
 }

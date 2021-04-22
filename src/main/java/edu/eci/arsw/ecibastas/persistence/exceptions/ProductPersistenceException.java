@@ -12,4 +12,3 @@ public class ProductPersistenceException extends Exception {
         super(message);
     }
 }
-

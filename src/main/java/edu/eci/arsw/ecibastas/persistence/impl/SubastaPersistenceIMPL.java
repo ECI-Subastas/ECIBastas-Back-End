@@ -16,7 +16,7 @@ import java.util.List;
 public class SubastaPersistenceIMPL implements SubastaPersistence {
 
     @Autowired
-    SubastaRepository subastaRepository; 
+    SubastaRepository subastaRepository;
 
     @PersistenceContext
     EntityManager entityManager;
@@ -50,7 +50,7 @@ public class SubastaPersistenceIMPL implements SubastaPersistence {
             Query query = entityManager.createNativeQuery("select * from subasta where name=?", Subasta.class);
             query.setParameter(1, name);
 
-            if (query.getResultList().size()==0) {
+            if (query.getResultList().size() == 0) {
                 throw new SubastaPersistenceException(SubastaPersistenceException.ERROR_SEARCHING_SUBASTA);
             }
 

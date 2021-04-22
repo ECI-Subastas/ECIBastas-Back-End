@@ -1,6 +1,6 @@
 package edu.eci.arsw.ecibastas.persistence.exceptions;
 
-public class SubastaPersistenceException extends Exception  {
+public class SubastaPersistenceException extends Exception {
     private static final long serialVersionUID = 6411078068744429965L;
 
     public static final String ERROR_CREATING_NEW_SUBASTA = "Error during subasta creation.";
@@ -11,4 +11,3 @@ public class SubastaPersistenceException extends Exception  {
         super(message);
     }
 }
-

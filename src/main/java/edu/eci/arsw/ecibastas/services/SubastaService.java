@@ -7,7 +7,8 @@ import java.util.List;
 
 public interface SubastaService {
     void createNewSubasta(Subasta subasta) throws SubastaServiceExceptions;
-    List<Subasta> getAllSubasta() throws SubastaServiceExceptions;
-    Subasta getSubastaByName(String name) throws SubastaServiceExceptions;
 
+    List<Subasta> getAllSubasta() throws SubastaServiceExceptions;
+
+    Subasta getSubastaByName(String name) throws SubastaServiceExceptions;
 }

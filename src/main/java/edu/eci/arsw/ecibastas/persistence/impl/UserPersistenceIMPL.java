@@ -21,7 +21,7 @@ public class UserPersistenceIMPL implements UserPersistence {
     EntityManager entityManager;
 
     public UserPersistenceIMPL() {
-        
+
     }
 
     @Override
@@ -41,7 +41,7 @@ public class UserPersistenceIMPL implements UserPersistence {
             query.setParameter(1, role);
             query.setParameter(2, nickname);
             query.setParameter(3, email);
-            
+
             query.executeUpdate();
         } catch (Exception e) {
             throw new UserPersistenceException(UserPersistenceException.ERROR_CHANGING_USER_ROLE);
@@ -55,7 +55,7 @@ public class UserPersistenceIMPL implements UserPersistence {
 
             query.setParameter(1, nickname);
 
-            if (query.getResultList().size()==0) {
+            if (query.getResultList().size() == 0) {
                 throw new UserPersistenceException(UserPersistenceException.ERROR_USER_NOT_FOUND);
             }
 
@@ -72,7 +72,7 @@ public class UserPersistenceIMPL implements UserPersistence {
 
             query.setParameter(1, email);
 
-            if (query.getResultList().size()==0) {
+            if (query.getResultList().size() == 0) {
                 throw new UserPersistenceException(UserPersistenceException.ERROR_USER_NOT_FOUND);
             }
 
@@ -81,5 +81,4 @@ public class UserPersistenceIMPL implements UserPersistence {
             throw new UserPersistenceException(UserPersistenceException.ERROR_SEARCHING_USER);
         }
     }
-    
 }

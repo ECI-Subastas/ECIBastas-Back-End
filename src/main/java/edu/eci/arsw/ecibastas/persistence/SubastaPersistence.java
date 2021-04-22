@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface SubastaPersistence {
     void createNewSubasta(Subasta subasta) throws SubastaPersistenceException;
+
     List<Subasta> getAllSubasta() throws SubastaPersistenceException;
+
     Subasta getSubastaByName(String name) throws SubastaPersistenceException;
 }

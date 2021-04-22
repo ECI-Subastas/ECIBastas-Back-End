@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class SubastaServiceIMPL implements SubastaService {
 
@@ -18,6 +19,7 @@ public class SubastaServiceIMPL implements SubastaService {
     public SubastaServiceIMPL() {
 
     }
+
     @Override
     public void createNewSubasta(Subasta subasta) throws SubastaServiceExceptions {
         try {

@@ -3,10 +3,8 @@ package edu.eci.arsw.ecibastas.services.impl;
 import edu.eci.arsw.ecibastas.model.Product;
 import edu.eci.arsw.ecibastas.persistence.ProductPersistence;
 import edu.eci.arsw.ecibastas.persistence.exceptions.ProductPersistenceException;
-import edu.eci.arsw.ecibastas.persistence.exceptions.UserPersistenceException;
 import edu.eci.arsw.ecibastas.services.ProductService;
 import edu.eci.arsw.ecibastas.services.exceptions.ProductServiceExceptions;
-import edu.eci.arsw.ecibastas.services.exceptions.UserServiceException;
 
 import java.util.List;
 
