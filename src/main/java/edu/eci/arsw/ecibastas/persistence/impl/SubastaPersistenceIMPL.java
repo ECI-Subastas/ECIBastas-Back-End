@@ -36,7 +36,7 @@ public class SubastaPersistenceIMPL implements SubastaPersistence {
     @Override
     public List<Subasta> getAllSubasta() throws SubastaPersistenceException {
         try {
-            Query query = entityManager.createNativeQuery("select * from subasta", Subasta.class);
+            Query query = entityManager.createNativeQuery("select * from subasta order by subasta_id", Subasta.class);
             List<Subasta> resultado = query.getResultList();
             return resultado;
         } catch (Exception e) {
