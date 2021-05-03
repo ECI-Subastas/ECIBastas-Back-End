@@ -72,7 +72,7 @@ public class ProductPersistenceIMPL implements ProductPersistence {
     @Override
     public List<Product> getProductsBySubasta(int subastaid) throws ProductPersistenceException {
         try {
-            Query query = entityManager.createNativeQuery("select * from product where subasta=? ", Product.class);
+            Query query = entityManager.createNativeQuery("select * from product where subasta=? order by product_id", Product.class);
 
             query.setParameter(1, subastaid);
 
