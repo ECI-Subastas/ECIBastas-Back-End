@@ -53,4 +53,13 @@ public class UserServiceIMPL implements UserService {
             throw new UserServiceException(e.getMessage());
         }
     }
+
+    @Override
+    public String getUserNicknameById(int userId) throws UserServiceException {
+        try {
+            return userPersistence.getUserNicknameById(userId);
+        } catch (UserPersistenceException e) {
+            throw new UserServiceException(e.getMessage());
+        }
+    }
 }

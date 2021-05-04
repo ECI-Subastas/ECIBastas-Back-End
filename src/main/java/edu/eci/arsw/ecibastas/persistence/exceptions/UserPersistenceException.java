@@ -7,6 +7,7 @@ public class UserPersistenceException extends Exception {
     public static final String ERROR_USER_NOT_FOUND = "The user specified was not found.";
     public static final String ERROR_SEARCHING_USER = "Error looking for the specified user.";
     public static final String ERROR_CHANGING_USER_ROLE = "Error during user changing role.";
+    public static final String ERRRO_SEARCHING_USER_NAME = "The user with the ID specified was not found.";
 
     public UserPersistenceException(String message) {
         super(message);

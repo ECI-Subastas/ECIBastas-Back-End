@@ -81,4 +81,17 @@ public class UserPersistenceIMPL implements UserPersistence {
             throw new UserPersistenceException(UserPersistenceException.ERROR_SEARCHING_USER);
         }
     }
+
+    @Override
+    public String getUserNicknameById(int userId) throws UserPersistenceException {
+        try {
+            Query query = entityManager.createNativeQuery("select nickname from users where user_id=?");
+
+            query.setParameter(1, userId);
+
+            return (String) query.getSingleResult();
+        } catch (Exception e) {
+            throw new UserPersistenceException(e.getMessage());
+        }
+    }
 }

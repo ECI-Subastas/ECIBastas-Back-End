@@ -11,4 +11,6 @@ public interface UserPersistence {
     User getUserByNickname(String nickname) throws UserPersistenceException;
 
     User getUserByEmail(String email) throws UserPersistenceException;
+
+    String getUserNicknameById(int userId) throws UserPersistenceException;
 }

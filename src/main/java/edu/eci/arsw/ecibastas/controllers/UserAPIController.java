@@ -60,4 +60,13 @@ public class UserAPIController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
+
+    @RequestMapping(value = "/user/nickname", method = RequestMethod.GET)
+    public ResponseEntity<?> getUserNameById(@RequestParam(name = "userId") int userId) {
+        try {
+            return new ResponseEntity<>(userService.getUserNicknameById(userId), HttpStatus.FOUND);
+        } catch (UserServiceException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
 }
