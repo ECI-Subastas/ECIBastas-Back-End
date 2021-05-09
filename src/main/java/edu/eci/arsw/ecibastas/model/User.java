@@ -30,19 +30,19 @@ public class User implements Serializable {
     @Column(name = "phone")
     private String phone;
 
-    @Column(name = "user_role")
-    private String role;
+    @Column(name = "credit")
+    private int credit;
 
     public User() {
 
     }
 
-    public User(String nickname, String fullName, String email, String phone, String role) {
+    public User(String nickname, String fullName, String email, String phone, int credit) {
         this.nickname = nickname;
         this.fullName = fullName;
         this.email = email;
         this.phone = phone;
-        this.role = role;
+        this.credit = credit;
     }
 
     public int getUser_id() {
@@ -85,11 +85,11 @@ public class User implements Serializable {
         this.phone = phone;
     }
 
-    public String getRole() {
-        return this.role;
+    public int getCredit() {
+        return this.credit;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setCredit(int credit) {
+        this.credit = credit;
     }
 }

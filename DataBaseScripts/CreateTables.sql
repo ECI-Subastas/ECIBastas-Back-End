@@ -4,7 +4,7 @@ create table users(
     full_name varchar(100) not null,
     email varchar(100) not null,
     phone char(10) not null,
-    user_role varchar(13) not null
+    credit int not null
 );
 
 create table sale(
