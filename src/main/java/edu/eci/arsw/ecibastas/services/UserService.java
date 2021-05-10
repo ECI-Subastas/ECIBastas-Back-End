@@ -13,4 +13,8 @@ public interface UserService {
     User getUserByEmail(String email) throws UserServiceException;
 
     String getUserNicknameById(int userId) throws UserServiceException;
+
+    int getUserIdByEmail(String email) throws UserServiceException;
+
+    int getCreditByUserId(int id) throws UserServiceException;
 }

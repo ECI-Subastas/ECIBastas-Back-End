@@ -69,4 +69,22 @@ public class UserAPIController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
+
+    @RequestMapping(value = "/user/id", method = RequestMethod.GET)
+    public ResponseEntity<?> getUserIdByEmail(@RequestParam(name = "email") String email) {
+        try {
+            return new ResponseEntity<>(userService.getUserIdByEmail(email), HttpStatus.FOUND);
+        } catch (UserServiceException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/user/credit", method = RequestMethod.GET)
+    public ResponseEntity<?> getCreditByUserId(@RequestParam(name = "userId") int id) {
+        try {
+            return new ResponseEntity<>(userService.getCreditByUserId(id), HttpStatus.FOUND);
+        } catch (UserServiceException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
 }

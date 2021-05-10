@@ -62,4 +62,22 @@ public class UserServiceIMPL implements UserService {
             throw new UserServiceException(e.getMessage());
         }
     }
+
+    @Override
+    public int getUserIdByEmail(String email) throws UserServiceException {
+        try {
+            return userPersistence.getUserIdByEmail(email);
+        } catch (UserPersistenceException e) {
+            throw new UserServiceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public int getCreditByUserId(int id) throws UserServiceException {
+        try {
+            return userPersistence.getCreditByUserId(id);
+        } catch (UserPersistenceException e) {
+            throw new UserServiceException(e.getMessage());
+        }
+    }
 }

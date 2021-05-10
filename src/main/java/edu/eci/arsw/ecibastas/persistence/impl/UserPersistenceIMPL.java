@@ -94,4 +94,30 @@ public class UserPersistenceIMPL implements UserPersistence {
             throw new UserPersistenceException(e.getMessage());
         }
     }
+
+    @Override
+    public int getUserIdByEmail(String email) throws UserPersistenceException {
+        try {
+            Query query = entityManager.createNativeQuery("select user_id from users where email=?");
+
+            query.setParameter(1, email);
+
+            return (int) query.getSingleResult();
+        } catch (Exception e) {
+            throw new UserPersistenceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public int getCreditByUserId(int id) throws UserPersistenceException {
+        try {
+            Query query = entityManager.createNativeQuery("select credit from users where user_id=?");
+
+            query.setParameter(1, id);
+
+            return (int) query.getSingleResult();
+        } catch (Exception e) {
+            throw new UserPersistenceException(e.getMessage());
+        }
+    }
 }
