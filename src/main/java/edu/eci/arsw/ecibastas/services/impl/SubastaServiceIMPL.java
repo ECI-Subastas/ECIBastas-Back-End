@@ -4,7 +4,7 @@ import edu.eci.arsw.ecibastas.model.Subasta;
 import edu.eci.arsw.ecibastas.persistence.SubastaPersistence;
 import edu.eci.arsw.ecibastas.persistence.exceptions.SubastaPersistenceException;
 import edu.eci.arsw.ecibastas.services.SubastaService;
-import edu.eci.arsw.ecibastas.services.exceptions.SubastaServiceExceptions;
+import edu.eci.arsw.ecibastas.services.exceptions.SubastaServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +21,7 @@ public class SubastaServiceIMPL implements SubastaService {
     }
 
     @Override
-    public void createNewSubasta(Subasta subasta) throws SubastaServiceExceptions {
+    public void createNewSubasta(Subasta subasta) throws SubastaServiceException {
         try {
             SubastaPersistence.createNewSubasta(subasta);
         } catch (SubastaPersistenceException e) {
@@ -30,7 +30,7 @@ public class SubastaServiceIMPL implements SubastaService {
     }
 
     @Override
-    public List<Subasta> getAllSubasta() throws SubastaServiceExceptions {
+    public List<Subasta> getAllSubasta() throws SubastaServiceException {
         try {
             return SubastaPersistence.getAllSubasta();
         } catch (SubastaPersistenceException e) {
@@ -40,12 +40,21 @@ public class SubastaServiceIMPL implements SubastaService {
     }
 
     @Override
-    public Subasta getSubastaByName(String name) throws SubastaServiceExceptions {
+    public Subasta getSubastaByName(String name) throws SubastaServiceException {
         try {
             return SubastaPersistence.getSubastaByName(name);
         } catch (SubastaPersistenceException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public List<Subasta> getAllUserAuctions(int userId) throws SubastaServiceException {
+        try {
+            return SubastaPersistence.getAllUserAuctions(userId);
+        } catch (SubastaPersistenceException e) {
+            throw new SubastaServiceException(e.getMessage());
+        }
     }
 }

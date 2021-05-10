@@ -11,4 +11,6 @@ public interface SubastaPersistence {
     List<Subasta> getAllSubasta() throws SubastaPersistenceException;
 
     Subasta getSubastaByName(String name) throws SubastaPersistenceException;
+
+    List<Subasta> getAllUserAuctions(int userId) throws SubastaPersistenceException;
 }

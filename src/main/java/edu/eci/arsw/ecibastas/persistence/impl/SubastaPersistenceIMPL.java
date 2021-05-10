@@ -59,4 +59,19 @@ public class SubastaPersistenceIMPL implements SubastaPersistence {
             throw new SubastaPersistenceException(SubastaPersistenceException.ERROR_SEARCHING_SUBASTA);
         }
     }
+
+    @Override
+    public List<Subasta> getAllUserAuctions(int userId) throws SubastaPersistenceException {
+        try {
+            Query query = entityManager.createNativeQuery("select * from subasta where creator=? order by subasta_id", Subasta.class);
+
+            query.setParameter(1, userId);
+
+            List<Subasta> result = query.getResultList();
+
+            return result;
+        } catch (Exception e) {
+            throw new SubastaPersistenceException(e.getMessage());
+        }
+    }
 }

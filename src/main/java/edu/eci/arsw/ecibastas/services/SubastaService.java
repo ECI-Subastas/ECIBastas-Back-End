@@ -1,14 +1,16 @@
 package edu.eci.arsw.ecibastas.services;
 
 import edu.eci.arsw.ecibastas.model.Subasta;
-import edu.eci.arsw.ecibastas.services.exceptions.SubastaServiceExceptions;
+import edu.eci.arsw.ecibastas.services.exceptions.SubastaServiceException;
 
 import java.util.List;
 
 public interface SubastaService {
-    void createNewSubasta(Subasta subasta) throws SubastaServiceExceptions;
+    void createNewSubasta(Subasta subasta) throws SubastaServiceException;
 
-    List<Subasta> getAllSubasta() throws SubastaServiceExceptions;
+    List<Subasta> getAllSubasta() throws SubastaServiceException;
 
-    Subasta getSubastaByName(String name) throws SubastaServiceExceptions;
+    Subasta getSubastaByName(String name) throws SubastaServiceException;
+
+    List<Subasta> getAllUserAuctions(int userId) throws SubastaServiceException;
 }

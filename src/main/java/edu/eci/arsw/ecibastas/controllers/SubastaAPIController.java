@@ -2,7 +2,7 @@ package edu.eci.arsw.ecibastas.controllers;
 
 import edu.eci.arsw.ecibastas.model.Subasta;
 import edu.eci.arsw.ecibastas.services.SubastaService;
-import edu.eci.arsw.ecibastas.services.exceptions.SubastaServiceExceptions;
+import edu.eci.arsw.ecibastas.services.exceptions.SubastaServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +25,7 @@ public class SubastaAPIController {
         try {
             subastaService.createNewSubasta(subasta);
             return new ResponseEntity<>(HttpStatus.CREATED);
-        } catch (SubastaServiceExceptions e) {
+        } catch (SubastaServiceException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
@@ -34,7 +34,7 @@ public class SubastaAPIController {
     public ResponseEntity<?> getSubastaByName(@RequestParam(name = "value") String name) {
         try {
             return new ResponseEntity<>(subastaService.getSubastaByName(name), HttpStatus.FOUND);
-        } catch (SubastaServiceExceptions e) {
+        } catch (SubastaServiceException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
@@ -43,7 +43,16 @@ public class SubastaAPIController {
     public ResponseEntity<?> getSubastas() {
         try {
             return new ResponseEntity<>(subastaService.getAllSubasta(), HttpStatus.ACCEPTED);
-        } catch (SubastaServiceExceptions e) {
+        } catch (SubastaServiceException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/auction/userAuctions", method = RequestMethod.GET)
+    public ResponseEntity<?> getAllUserAuctions(@RequestParam(name = "userId") int userId) {
+        try {
+            return new ResponseEntity<>(subastaService.getAllUserAuctions(userId), HttpStatus.FOUND);
+        } catch (SubastaServiceException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
