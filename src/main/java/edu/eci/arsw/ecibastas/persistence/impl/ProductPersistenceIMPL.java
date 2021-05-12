@@ -97,4 +97,18 @@ public class ProductPersistenceIMPL implements ProductPersistence {
             throw new ProductPersistenceException(ProductPersistenceException.ERROR_USER_NOT_FOUND);
         }
     }
+
+    @Override
+    public void productOwner(int productid, String nickname) throws ProductPersistenceException{
+        try {
+            Query query = entityManager.createNativeQuery(
+                    "update product set name=nickame  where product_id=?", Product.class);
+
+            query.setParameter(1, productid);
+
+            query.executeUpdate();
+        } catch (Exception e) {
+            throw new ProductPersistenceException(ProductPersistenceException.ERROR_USER_NOT_FOUND);
+        }
+    }
 }

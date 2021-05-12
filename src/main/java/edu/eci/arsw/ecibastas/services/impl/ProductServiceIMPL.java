@@ -65,4 +65,13 @@ public class ProductServiceIMPL implements ProductService {
         }
     }
 
+    @Override
+    public void productOwner(int productid, String nickname) throws ProductServiceExceptions {
+        try {
+            productPersistence.productOwner(productid,nickname);
+        } catch (ProductPersistenceException e) {
+            throw new ProductServiceExceptions(e.getMessage());
+        }
+    }
+
 }

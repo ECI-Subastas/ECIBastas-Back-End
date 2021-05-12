@@ -15,4 +15,6 @@ public interface ProductPersistence {
     List<Product> getProductsBySubasta(int subastaid) throws ProductPersistenceException;
 
     void pujarDefault(int idproduct) throws ProductPersistenceException;
+
+    void productOwner(int productid, String nickname) throws ProductPersistenceException;
 }

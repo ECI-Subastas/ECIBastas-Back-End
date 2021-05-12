@@ -18,4 +18,6 @@ public interface ProductService {
      List<Product> getProductsBySubasta(int subastaid) throws ProductServiceExceptions;
 
      void pujarDefault(int productid) throws ProductServiceExceptions;
+
+    void productOwner(int productid, String nickname) throws ProductServiceExceptions;
 }

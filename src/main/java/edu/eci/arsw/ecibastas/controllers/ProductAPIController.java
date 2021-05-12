@@ -66,4 +66,16 @@ public class ProductAPIController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_MODIFIED);
         }
     }
+
+    @RequestMapping(value = "/product/productOwner", method = RequestMethod.PUT)
+    public ResponseEntity<?> productOwner(@RequestParam(name = "productid") int productid,  @RequestParam(name = "nickname") String nickname) {
+        try {
+            //productService.pujarDefault(productid);
+            productService.productOwner(productid,nickname);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+
+        } catch (ProductServiceExceptions e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_MODIFIED);
+        }
+    }
 }
