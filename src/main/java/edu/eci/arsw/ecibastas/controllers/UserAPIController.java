@@ -88,8 +88,8 @@ public class UserAPIController {
         }
     }
 
-    @RequestMapping(value = "/user/buyCredits", method = RequestMethod.PUT)
-    public ResponseEntity<?> buyCredits(@RequestParam(name = "userId") int id,@RequestParam(name = "credits") int credits ) {
+    @RequestMapping(value = "/user/sumCredits", method = RequestMethod.PUT)
+    public ResponseEntity<?> sumCredits(@RequestParam(name = "userId") int id,@RequestParam(name = "credits") int credits ) {
         try {
             userService.buyCredits(id, credits);
 
