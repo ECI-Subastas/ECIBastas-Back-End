@@ -67,6 +67,17 @@ public class ProductAPIController {
         }
     }
 
+    @RequestMapping(value = "/product/pujarPersonalize", method = RequestMethod.PUT)
+    public ResponseEntity<?> pujarPersonalize(@RequestParam(name = "productid") int productid, @RequestParam(name = "credits") int credits) {
+        try {
+            productService.pujarPersonalize(productid,credits);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+
+        } catch (ProductServiceExceptions e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_MODIFIED);
+        }
+    }
+
     @RequestMapping(value = "/product/productOwner", method = RequestMethod.PUT)
     public ResponseEntity<?> productOwner(@RequestParam(name = "productid") int productid,  @RequestParam(name = "nickname") String nickname) {
         try {

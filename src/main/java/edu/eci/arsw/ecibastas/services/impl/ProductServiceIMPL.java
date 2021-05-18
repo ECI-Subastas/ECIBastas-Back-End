@@ -74,4 +74,13 @@ public class ProductServiceIMPL implements ProductService {
         }
     }
 
+    @Override
+    public void pujarPersonalize(int productid, int credits) throws ProductServiceExceptions {
+        try {
+            productPersistence.pujarPersonalize(productid,credits);
+        } catch (ProductPersistenceException e) {
+            throw new ProductServiceExceptions(e.getMessage());
+        }
+    }
+
 }

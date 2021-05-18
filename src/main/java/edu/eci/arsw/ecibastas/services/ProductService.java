@@ -20,4 +20,6 @@ public interface ProductService {
      void pujarDefault(int productid) throws ProductServiceExceptions;
 
     void productOwner(int productid, String nickname) throws ProductServiceExceptions;
+
+    void pujarPersonalize(int productid, int credits) throws ProductServiceExceptions;
 }

@@ -111,4 +111,19 @@ public class ProductPersistenceIMPL implements ProductPersistence {
             throw new ProductPersistenceException(ProductPersistenceException.ERROR_USER_NOT_FOUND);
         }
     }
+
+    @Override
+    @Transactional
+    public void pujarPersonalize(int productid, int credits) throws ProductPersistenceException {
+        try {
+            Query query = entityManager.createNativeQuery(
+                    "update product set actualprice=? where product_id=?", Product.class);
+
+            query.setParameter(1, credits);
+            query.setParameter(2, productid);
+            query.executeUpdate();
+        } catch (Exception e) {
+            throw new ProductPersistenceException(ProductPersistenceException.ERROR_USER_NOT_FOUND);
+        }
+    }
 }

@@ -17,4 +17,6 @@ public interface ProductPersistence {
     void pujarDefault(int idproduct) throws ProductPersistenceException;
 
     void productOwner(int productid, String nickname) throws ProductPersistenceException;
+
+    void pujarPersonalize(int productid, int credits) throws ProductPersistenceException;
 }
