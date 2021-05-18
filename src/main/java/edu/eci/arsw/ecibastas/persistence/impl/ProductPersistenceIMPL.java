@@ -117,7 +117,7 @@ public class ProductPersistenceIMPL implements ProductPersistence {
     public void pujarPersonalize(int productid, int credits) throws ProductPersistenceException {
         try {
             Query query = entityManager.createNativeQuery(
-                    "update product set actualprice=? where product_id=?", Product.class);
+                    "update product set actualprice=actualprice+? where product_id=?", Product.class);
 
             query.setParameter(1, credits);
             query.setParameter(2, productid);
