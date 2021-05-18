@@ -3,7 +3,10 @@ package edu.eci.arsw.ecibastas.persistence.impl;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
+import edu.eci.arsw.ecibastas.model.Product;
+import edu.eci.arsw.ecibastas.persistence.exceptions.ProductPersistenceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -116,6 +119,21 @@ public class UserPersistenceIMPL implements UserPersistence {
             query.setParameter(1, id);
 
             return (int) query.getSingleResult();
+        } catch (Exception e) {
+            throw new UserPersistenceException(e.getMessage());
+        }
+    }
+
+    @Override
+    @Transactional
+    public void buyCredits(int id, int credits) throws UserPersistenceException {
+        try {
+            Query query = entityManager.createNativeQuery(
+                    "update users set credit=credit+? where user_id=?");
+
+            query.setParameter(1, credits);
+            query.setParameter(2, id);
+            query.executeUpdate();
         } catch (Exception e) {
             throw new UserPersistenceException(e.getMessage());
         }

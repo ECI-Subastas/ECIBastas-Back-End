@@ -17,4 +17,6 @@ public interface UserService {
     int getUserIdByEmail(String email) throws UserServiceException;
 
     int getCreditByUserId(int id) throws UserServiceException;
+
+    void buyCredits(int id, int credits) throws UserServiceException;
 }

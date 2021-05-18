@@ -87,4 +87,15 @@ public class UserAPIController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
+
+    @RequestMapping(value = "/user/buyCredits", method = RequestMethod.PUT)
+    public ResponseEntity<?> buyCredits(@RequestParam(name = "userId") int id,@RequestParam(name = "credits") int credits ) {
+        try {
+            userService.buyCredits(id, credits);
+
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        } catch (UserServiceException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
 }

@@ -17,4 +17,6 @@ public interface UserPersistence {
     int getUserIdByEmail(String email) throws UserPersistenceException;
 
     int getCreditByUserId(int id) throws UserPersistenceException;
+
+    void buyCredits(int id, int credits) throws UserPersistenceException;
 }

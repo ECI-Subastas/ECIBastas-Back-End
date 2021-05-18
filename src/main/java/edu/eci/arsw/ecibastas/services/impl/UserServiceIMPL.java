@@ -80,4 +80,13 @@ public class UserServiceIMPL implements UserService {
             throw new UserServiceException(e.getMessage());
         }
     }
+
+    @Override
+    public void buyCredits(int id, int credits) throws UserServiceException {
+        try {
+            userPersistence.buyCredits(id, credits);
+        } catch (UserPersistenceException e) {
+            throw new UserServiceException(e.getMessage());
+        }
+    }
 }
