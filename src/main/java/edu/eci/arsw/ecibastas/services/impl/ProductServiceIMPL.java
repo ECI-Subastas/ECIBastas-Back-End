@@ -90,7 +90,7 @@ public class ProductServiceIMPL implements ProductService {
 
             productPersistence.pujarPersonalize(productid,credits,userid);
 
-            userService.sumCredits(userid,credits*-1);
+            userService.sumCredits(userid,(product.getActualprice()+credits)*-1);
 
         } catch (ProductPersistenceException | UserServiceException e) {
             throw new ProductServiceExceptions(e.getMessage());
