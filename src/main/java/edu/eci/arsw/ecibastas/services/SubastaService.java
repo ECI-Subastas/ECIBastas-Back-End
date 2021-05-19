@@ -13,4 +13,6 @@ public interface SubastaService {
     Subasta getSubastaByName(String name) throws SubastaServiceException;
 
     List<Subasta> getAllUserAuctions(int userId) throws SubastaServiceException;
+
+    void setActive(Boolean state, int subastaid) throws SubastaServiceException;
 }

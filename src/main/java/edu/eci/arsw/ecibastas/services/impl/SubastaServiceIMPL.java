@@ -57,4 +57,13 @@ public class SubastaServiceIMPL implements SubastaService {
             throw new SubastaServiceException(e.getMessage());
         }
     }
+
+    @Override
+    public void setActive(Boolean state, int subastaid) throws SubastaServiceException {
+        try {
+            SubastaPersistence.setActive(state, subastaid);
+        } catch (SubastaPersistenceException e) {
+            throw new SubastaServiceException(e.getMessage());
+        }
+    }
 }

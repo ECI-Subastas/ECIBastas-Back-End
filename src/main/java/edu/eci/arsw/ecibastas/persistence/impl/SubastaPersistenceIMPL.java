@@ -1,7 +1,9 @@
 package edu.eci.arsw.ecibastas.persistence.impl;
 
+import edu.eci.arsw.ecibastas.model.Product;
 import edu.eci.arsw.ecibastas.model.Subasta;
 import edu.eci.arsw.ecibastas.persistence.SubastaPersistence;
+import edu.eci.arsw.ecibastas.persistence.exceptions.ProductPersistenceException;
 import edu.eci.arsw.ecibastas.persistence.exceptions.SubastaPersistenceException;
 import edu.eci.arsw.ecibastas.repository.SubastaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -71,6 +74,21 @@ public class SubastaPersistenceIMPL implements SubastaPersistence {
             List<Subasta> result = query.getResultList();
 
             return result;
+        } catch (Exception e) {
+            throw new SubastaPersistenceException(e.getMessage());
+        }
+    }
+
+    @Override
+    @Transactional
+    public void setActive(Boolean state, int subastaid) throws SubastaPersistenceException {
+        try {
+            Query query = entityManager.createNativeQuery(
+                    "update subasta set is_active=? where subasta_id=?", Product.class);
+
+            query.setParameter(1, state);
+            query.setParameter(2, subastaid);
+            query.executeUpdate();
         } catch (Exception e) {
             throw new SubastaPersistenceException(e.getMessage());
         }

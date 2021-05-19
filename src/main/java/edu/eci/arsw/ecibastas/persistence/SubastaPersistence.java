@@ -13,4 +13,7 @@ public interface SubastaPersistence {
     Subasta getSubastaByName(String name) throws SubastaPersistenceException;
 
     List<Subasta> getAllUserAuctions(int userId) throws SubastaPersistenceException;
+
+    void setActive(Boolean state, int subastaid) throws SubastaPersistenceException;
+
 }

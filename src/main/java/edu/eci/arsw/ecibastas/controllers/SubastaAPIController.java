@@ -2,6 +2,7 @@ package edu.eci.arsw.ecibastas.controllers;
 
 import edu.eci.arsw.ecibastas.model.Subasta;
 import edu.eci.arsw.ecibastas.services.SubastaService;
+import edu.eci.arsw.ecibastas.services.exceptions.ProductServiceExceptions;
 import edu.eci.arsw.ecibastas.services.exceptions.SubastaServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -54,6 +55,17 @@ public class SubastaAPIController {
             return new ResponseEntity<>(subastaService.getAllUserAuctions(userId), HttpStatus.FOUND);
         } catch (SubastaServiceException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/subasta/setActive", method = RequestMethod.PUT)
+    public ResponseEntity<?> setActive(@RequestParam(name = "active") Boolean active,@RequestParam(name = "subastaid") int subastaid) {
+        try {
+            subastaService.setActive(active,subastaid);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+
+        } catch (SubastaServiceException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_MODIFIED);
         }
     }
 }
