@@ -25,7 +25,7 @@ public class Subasta implements Serializable {
     private int creator;
 
     @Column(name = "isActive")
-    private int isAvtive;
+    private int isActive;
 
     public Subasta() {
 
@@ -60,11 +60,11 @@ public class Subasta implements Serializable {
         this.creator = creator;
     }
 
-    public int getIsAvtive() {
-        return isAvtive;
+    public int getIsActive() {
+        return isActive;
     }
 
-    public void setIsAvtive(int isAvtive) {
-        this.isAvtive = isAvtive;
+    public void setIsActive(int isActive) {
+        this.isActive = isActive;
     }
 }
