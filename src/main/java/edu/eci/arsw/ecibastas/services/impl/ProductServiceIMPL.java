@@ -84,7 +84,9 @@ public class ProductServiceIMPL implements ProductService {
     public void pujar(int productid, int credits, int userid) throws ProductServiceExceptions {
         try {
             Product product = getProductById(productid);
-            userService.sumCredits(product.getOwner_user(),product.getActualprice());
+            if(product.getOwner_user() != null){
+                userService.sumCredits(product.getOwner_user(),product.getActualprice());
+            }
 
             productPersistence.pujarPersonalize(productid,credits,userid);
 
