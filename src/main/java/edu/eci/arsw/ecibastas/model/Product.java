@@ -28,7 +28,7 @@ public class Product implements Serializable {
     private int actualprice;
 
     @Column(name = "owner_user")
-    private int owner_user;
+    private Integer owner_user;
 
     public Product() {
 
@@ -90,11 +90,11 @@ public class Product implements Serializable {
         this.actualprice = actualprice;
     }
 
-    public int getOwner_user() {
+    public Integer getOwner_user() {
         return owner_user;
     }
 
-    public void setOwner_user(int owner_user) {
+    public void setOwner_user(Integer owner_user) {
         this.owner_user = owner_user;
     }
 }

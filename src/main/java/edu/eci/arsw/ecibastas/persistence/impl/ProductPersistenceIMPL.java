@@ -83,7 +83,7 @@ public class ProductPersistenceIMPL implements ProductPersistence {
             List<Product> resultado = query.getResultList();
             return resultado;
         } catch (Exception e) {
-            throw new ProductPersistenceException(ProductPersistenceException.ERROR_CHANGING_USER_ROLE);
+            throw new ProductPersistenceException(e.getMessage());
         }
     }
 
