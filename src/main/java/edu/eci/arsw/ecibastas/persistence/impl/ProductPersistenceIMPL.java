@@ -5,6 +5,7 @@ import edu.eci.arsw.ecibastas.model.User;
 import edu.eci.arsw.ecibastas.persistence.ProductPersistence;
 import edu.eci.arsw.ecibastas.persistence.exceptions.ProductPersistenceException;
 import edu.eci.arsw.ecibastas.repository.ProductRepository;
+import edu.eci.arsw.ecibastas.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,9 @@ public class ProductPersistenceIMPL implements ProductPersistence {
 
     @Autowired
     ProductRepository productRepository;
+
+    @Autowired
+    UserService userService;
 
     @PersistenceContext
     EntityManager entityManager;
@@ -84,21 +88,6 @@ public class ProductPersistenceIMPL implements ProductPersistence {
     }
 
     @Override
-    @Transactional
-    public void pujarDefault(int idproduct) throws ProductPersistenceException {
-        try {
-            Query query = entityManager.createNativeQuery(
-                    "update product set actualprice=actualprice + 5 where product_id=?", Product.class);
-
-            query.setParameter(1, idproduct);
-
-            query.executeUpdate();
-        } catch (Exception e) {
-            throw new ProductPersistenceException(ProductPersistenceException.ERROR_USER_NOT_FOUND);
-        }
-    }
-
-    @Override
     public void productOwner(int productid, String nickname) throws ProductPersistenceException{
         try {
             Query query = entityManager.createNativeQuery(
@@ -112,18 +101,31 @@ public class ProductPersistenceIMPL implements ProductPersistence {
         }
     }
 
+
     @Override
     @Transactional
-    public void pujarPersonalize(int productid, int credits) throws ProductPersistenceException {
+    public void pujarPersonalize(int productid, int credits, int userid) throws ProductPersistenceException {
         try {
             Query query = entityManager.createNativeQuery(
-                    "update product set actualprice=actualprice+? where product_id=?", Product.class);
+                    "update product set actualprice=actualprice+?, owner_user=? where product_id=?", Product.class);
 
             query.setParameter(1, credits);
-            query.setParameter(2, productid);
+            query.setParameter(2, userid);
+            query.setParameter(3, productid);
             query.executeUpdate();
         } catch (Exception e) {
             throw new ProductPersistenceException(ProductPersistenceException.ERROR_USER_NOT_FOUND);
+        }
+    }
+
+    @Override
+    public Product getProductById(int productid) throws ProductPersistenceException {
+        try {
+            Query query = entityManager.createNativeQuery("select * from product where product_id=?", Product.class);
+            query.setParameter(1, productid);
+            return (Product) query.getSingleResult();
+        } catch (Exception e) {
+            throw new ProductPersistenceException(ProductPersistenceException.ERROR_CHANGING_USER_ROLE);
         }
     }
 }

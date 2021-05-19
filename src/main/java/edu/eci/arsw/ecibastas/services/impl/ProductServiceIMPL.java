@@ -4,20 +4,35 @@ import edu.eci.arsw.ecibastas.model.Product;
 import edu.eci.arsw.ecibastas.persistence.ProductPersistence;
 import edu.eci.arsw.ecibastas.persistence.exceptions.ProductPersistenceException;
 import edu.eci.arsw.ecibastas.services.ProductService;
+import edu.eci.arsw.ecibastas.services.UserService;
 import edu.eci.arsw.ecibastas.services.exceptions.ProductServiceExceptions;
 
 import java.util.List;
 
+import edu.eci.arsw.ecibastas.services.exceptions.UserServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ProductServiceIMPL implements ProductService {
+
     @Autowired
     ProductPersistence productPersistence;
 
+    @Autowired
+    UserService userService;
+
     public ProductServiceIMPL() {
 
+    }
+
+    @Override
+    public Product getProductById(int productid) throws ProductServiceExceptions {
+        try {
+            return productPersistence.getProductById(productid);
+        } catch (ProductPersistenceException e) {
+            throw new ProductServiceExceptions(e.getMessage());
+        }
     }
 
     @Override
@@ -57,15 +72,6 @@ public class ProductServiceIMPL implements ProductService {
     }
 
     @Override
-    public void pujarDefault(int productid) throws ProductServiceExceptions {
-        try {
-            productPersistence.pujarDefault(productid);
-        } catch (ProductPersistenceException e) {
-            throw new ProductServiceExceptions(e.getMessage());
-        }
-    }
-
-    @Override
     public void productOwner(int productid, String nickname) throws ProductServiceExceptions {
         try {
             productPersistence.productOwner(productid,nickname);
@@ -75,12 +81,19 @@ public class ProductServiceIMPL implements ProductService {
     }
 
     @Override
-    public void pujarPersonalize(int productid, int credits) throws ProductServiceExceptions {
+    public void pujar(int productid, int credits, int userid) throws ProductServiceExceptions {
         try {
-            productPersistence.pujarPersonalize(productid,credits);
-        } catch (ProductPersistenceException e) {
+            Product product = getProductById(productid);
+            userService.sumCredits(product.getOwner_user(),product.getActualprice());
+
+            productPersistence.pujarPersonalize(productid,credits,userid);
+
+            userService.sumCredits(userid,credits*-1);
+
+        } catch (ProductPersistenceException | UserServiceException e) {
             throw new ProductServiceExceptions(e.getMessage());
         }
     }
+
 
 }

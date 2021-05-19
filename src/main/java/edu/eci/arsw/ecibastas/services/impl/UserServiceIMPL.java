@@ -82,9 +82,9 @@ public class UserServiceIMPL implements UserService {
     }
 
     @Override
-    public void buyCredits(int id, int credits) throws UserServiceException {
+    public void sumCredits(int id, int credits) throws UserServiceException {
         try {
-            userPersistence.buyCredits(id, credits);
+            userPersistence.sumCredits(id, credits);
         } catch (UserPersistenceException e) {
             throw new UserServiceException(e.getMessage());
         }

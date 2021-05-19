@@ -91,7 +91,7 @@ public class UserAPIController {
     @RequestMapping(value = "/user/sumCredits", method = RequestMethod.PUT)
     public ResponseEntity<?> sumCredits(@RequestParam(name = "userId") int id,@RequestParam(name = "credits") int credits ) {
         try {
-            userService.buyCredits(id, credits);
+            userService.sumCredits(id, credits);
 
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         } catch (UserServiceException e) {

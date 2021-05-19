@@ -126,7 +126,7 @@ public class UserPersistenceIMPL implements UserPersistence {
 
     @Override
     @Transactional
-    public void buyCredits(int id, int credits) throws UserPersistenceException {
+    public void sumCredits(int id, int credits) throws UserPersistenceException {
         try {
             Query query = entityManager.createNativeQuery(
                     "update users set credit=credit+? where user_id=?");

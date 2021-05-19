@@ -8,18 +8,18 @@ import edu.eci.arsw.ecibastas.services.exceptions.UserServiceException;
 import java.util.List;
 
 public interface ProductService {
-     void createNewProduct(Product product) throws ProductServiceExceptions;
+    Product getProductById(int productid) throws ProductServiceExceptions;
 
-     void changePriceInitial(String product, int price)
-               throws UserServiceException, ProductPersistenceException, ProductServiceExceptions;
+    void createNewProduct(Product product) throws ProductServiceExceptions;
 
-     Product getSubastaByProduct(String product) throws ProductServiceExceptions;
+    void changePriceInitial(String product, int price)
+           throws UserServiceException, ProductPersistenceException, ProductServiceExceptions;
 
-     List<Product> getProductsBySubasta(int subastaid) throws ProductServiceExceptions;
+    Product getSubastaByProduct(String product) throws ProductServiceExceptions;
 
-     void pujarDefault(int productid) throws ProductServiceExceptions;
+    List<Product> getProductsBySubasta(int subastaid) throws ProductServiceExceptions;
 
     void productOwner(int productid, String nickname) throws ProductServiceExceptions;
 
-    void pujarPersonalize(int productid, int credits) throws ProductServiceExceptions;
+    void pujar(int productid, int credits, int userid) throws ProductServiceExceptions;
 }

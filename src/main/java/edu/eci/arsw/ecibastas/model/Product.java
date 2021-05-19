@@ -27,6 +27,9 @@ public class Product implements Serializable {
     @Column(name = "actualprice")
     private int actualprice;
 
+    @Column(name = "owner_user")
+    private int owner_user;
+
     public Product() {
 
     }
@@ -85,5 +88,13 @@ public class Product implements Serializable {
 
     public void setActualprice(int actualprice) {
         this.actualprice = actualprice;
+    }
+
+    public int getOwner_user() {
+        return owner_user;
+    }
+
+    public void setOwner_user(int owner_user) {
+        this.owner_user = owner_user;
     }
 }
