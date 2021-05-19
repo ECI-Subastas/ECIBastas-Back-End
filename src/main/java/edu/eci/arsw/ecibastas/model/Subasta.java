@@ -24,11 +24,9 @@ public class Subasta implements Serializable {
     @Column(name = "creator")
     private int creator;
 
-    /*
-     * pendiente
-     * 
-     * @Column(name = "image") private String image;
-     */
+    @Column(name = "isActive")
+    private int isAvtive;
+
     public Subasta() {
 
     }
@@ -36,7 +34,6 @@ public class Subasta implements Serializable {
     public Subasta(String name, int creator, String image) {
         this.name = name;
         this.creator = creator;
-        // this.image = image;
     }
 
     public int getSubastaId() {
@@ -62,10 +59,12 @@ public class Subasta implements Serializable {
     public void setCreator(int creator) {
         this.creator = creator;
     }
-    /*
-     * public String getImage() { return image; }
-     * 
-     * public void setImage(String image) { this.image = image; }
-     * 
-     */
+
+    public int getIsAvtive() {
+        return isAvtive;
+    }
+
+    public void setIsAvtive(int isAvtive) {
+        this.isAvtive = isAvtive;
+    }
 }
