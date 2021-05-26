@@ -16,7 +16,7 @@ import java.util.List;
 public class SubastaServiceIMPL implements SubastaService {
 
     @Autowired
-    SubastaPersistence SubastaPersistence;
+    SubastaPersistence subastaPersistence;
 
     @Autowired
     ECIBastasCache eciBastasCache;
@@ -28,7 +28,7 @@ public class SubastaServiceIMPL implements SubastaService {
     @Override
     public void createNewSubasta(Subasta subasta) throws SubastaServiceException {
         try {
-            SubastaPersistence.createNewSubasta(subasta);
+            subastaPersistence.createNewSubasta(subasta);
         } catch (SubastaPersistenceException e) {
             e.printStackTrace();
         }
@@ -46,7 +46,7 @@ public class SubastaServiceIMPL implements SubastaService {
     @Override
     public Subasta getSubastaByName(String name) throws SubastaServiceException {
         try {
-            return SubastaPersistence.getSubastaByName(name);
+            return subastaPersistence.getSubastaByName(name);
         } catch (SubastaPersistenceException e) {
             throw new SubastaServiceException(e.getMessage());
         }
@@ -55,7 +55,7 @@ public class SubastaServiceIMPL implements SubastaService {
     @Override
     public List<Subasta> getAllUserAuctions(int userId) throws SubastaServiceException {
         try {
-            return SubastaPersistence.getAllUserAuctions(userId);
+            return subastaPersistence.getAllUserAuctions(userId);
         } catch (SubastaPersistenceException e) {
             throw new SubastaServiceException(e.getMessage());
         }
@@ -64,21 +64,21 @@ public class SubastaServiceIMPL implements SubastaService {
     @Override
     public void setActive(Boolean state, int subastaid) throws SubastaServiceException {
         try {
-            SubastaPersistence.setActive(state, subastaid);
+            subastaPersistence.setActive(state, subastaid);
         } catch (SubastaPersistenceException e) {
             throw new SubastaServiceException(e.getMessage());
         }
     }
 
-    @Scheduled(fixedDelay = 60000)
-    public void reseltHashOperation() throws Exception {
+    @Scheduled(fixedDelay = 30000)
+    public void resetHashOperation() throws Exception {
         List<Subasta> oldAuctions = eciBastasCache.getAllAuctions();
 
         for(int i = 0; i < oldAuctions.size(); i++){
             eciBastasCache.deleteAuction(oldAuctions.get(i).getSubastaId());
         }
         
-        List<Subasta> newAuctions = SubastaPersistence.getAllSubasta();
+        List<Subasta> newAuctions = subastaPersistence.getAllSubasta();
         
         for(int i = 0; i<newAuctions.size(); i++){
             eciBastasCache.putAuction(newAuctions.get(i));
