@@ -16,4 +16,5 @@ public interface SubastaPersistence {
 
     void setActive(Boolean state, int subastaid) throws SubastaPersistenceException;
 
+    boolean isActive(int auctionId) throws SubastaPersistenceException;
 }

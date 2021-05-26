@@ -15,4 +15,6 @@ public interface SubastaService {
     List<Subasta> getAllUserAuctions(int userId) throws SubastaServiceException;
 
     void setActive(Boolean state, int subastaid) throws SubastaServiceException;
+
+    boolean isActive(int auctionId) throws SubastaServiceException;
 }

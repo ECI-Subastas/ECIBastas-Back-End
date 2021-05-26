@@ -17,7 +17,6 @@ import java.util.List;
 
 @Service
 public class SubastaPersistenceIMPL implements SubastaPersistence {
-
     @Autowired
     SubastaRepository subastaRepository;
 
@@ -89,6 +88,19 @@ public class SubastaPersistenceIMPL implements SubastaPersistence {
             query.setParameter(1, state);
             query.setParameter(2, subastaid);
             query.executeUpdate();
+        } catch (Exception e) {
+            throw new SubastaPersistenceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public boolean isActive(int auctionId) throws SubastaPersistenceException {
+        try {
+            Query query = entityManager.createNativeQuery("select is_active from subasta where subasta_id=?");
+
+            query.setParameter(1, auctionId);
+
+            return (boolean) query.getSingleResult();
         } catch (Exception e) {
             throw new SubastaPersistenceException(e.getMessage());
         }

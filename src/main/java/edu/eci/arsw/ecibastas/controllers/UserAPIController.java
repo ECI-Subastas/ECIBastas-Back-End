@@ -64,7 +64,7 @@ public class UserAPIController {
     @RequestMapping(value = "/user/nickname/userId", method = RequestMethod.GET)
     public ResponseEntity<?> getUserNicknameById(@RequestParam(name = "value") int userId) {
         try {
-            return new ResponseEntity<>(userService.getUserNicknameById(userId), HttpStatus.FOUND);
+            return new ResponseEntity<>(userService.getUserNicknameById(userId), HttpStatus.ACCEPTED);
         } catch (UserServiceException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }

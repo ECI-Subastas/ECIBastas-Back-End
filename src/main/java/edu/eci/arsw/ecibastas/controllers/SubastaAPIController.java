@@ -68,4 +68,13 @@ public class SubastaAPIController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_MODIFIED);
         }
     }
+
+    @RequestMapping(value = "/subasta/isActive", method = RequestMethod.GET)
+    public ResponseEntity<?> isActive(@RequestParam(name = "subastaid") int subastaid) {
+        try {
+            return new ResponseEntity<>(subastaService.isActive(subastaid), HttpStatus.ACCEPTED);
+        } catch (SubastaServiceException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_MODIFIED);
+        }
+    }
 }
