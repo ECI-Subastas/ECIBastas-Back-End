@@ -78,15 +78,13 @@
             <version>2.3.3.RELEASE</version>
         </dependency>
 
-        <!--CACHE
+        
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
             <version>3.3.0</version>
             <type>jar</type>
         </dependency>
-        -->
-
     </dependencies>
 
     <build>

@@ -44,7 +44,7 @@ public class SubastaAPIController {
     public ResponseEntity<?> getSubastas() {
         try {
             return new ResponseEntity<>(subastaService.getAllSubasta(), HttpStatus.ACCEPTED);
-        } catch (SubastaServiceException e) {
+        } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
